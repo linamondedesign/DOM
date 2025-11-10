@@ -28,6 +28,19 @@
       left: 0;
       background-color: blue;
     }
+    .top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #222;
+      background-color: #fff;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -35,11 +48,20 @@
     <div class="progressBar"></div>
     <h1>스크롤 이벤트</h1>
   </main>
+  <div class="top">TOP</div>
   <script>  
     //h1요소를 가져오기
     const h1Elem = document.querySelector('h1');
     //프로그래스 바 요소 가져오기
     const progressElem = document.querySelector('.progressBar');
+    //top button 요소 가져오기
+    const topBtn = document.querySelector('.top');
+    //메인 정보 가져오기
+    const mainElem = document.querySelector('main');
+
+    topBtn.addEventListener('click',()=>{
+      mainElem.scrollIntoView({behavior:'smooth'});
+    });
     window.addEventListener('scroll',()=>{
       //scrollHeight : 전체 문서의 높이(스크롤이 가능한 전체길이)
       //clientHeight : 100vh
@@ -48,6 +70,8 @@
     const scrollable = scrollHeight - clientHeight;
     const rate=(scrollTop/scrollable)*100;
     progressElem.style.width = `${rate}%`;
+
+    //scrollIntoview()
     });
     //현재 스크롤 위치 가져오기
     // let scrollY = window.scrollY;
