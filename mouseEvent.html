@@ -4,8 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>마우스 이벤트</title>
+  <style>
+    *{margin: 0; padding: 0;}
+    main {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: tomato;
+      }
+    }
+  </style>
 </head>
 <body>
-
+  <main>
+    <div class="box"></div>
+  </main>
+  <script>
+    const boxElem = document.querySelector('.box');
+    boxElem.addEventListener('mouseenter',()=>{
+      boxElem.style.backgroundColor = 'skyblue';
+    });
+    boxElem.addEventListener('mouseleave',()=>{
+      boxElem.style.backgroundColor = 'transparent';
+    });
+  </script>
 </body>
 </html>
