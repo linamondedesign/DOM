@@ -12,9 +12,13 @@
       justify-content: center;
       align-items: center;
       .box {
+        position: absolute;
         width: 200px;
         height: 200px;
         background-color: tomato;
+      }
+      .box.move {
+        opacity: 0.7;
       }
     }
   </style>
@@ -24,12 +28,54 @@
     <div class="box"></div>
   </main>
   <script>
+    /**
+     *mouseenter : 마우스가 올라갔을 때
+     *mousemove : 마우스가 움직일 때
+     *mouseleave : 마우스가 나왔을 때 
+     */
+    // const boxElem = document.querySelector('.box');
+    // boxElem.addEventListener('mouseenter',()=>{
+    //   boxElem.style.backgroundColor = 'skyblue';
+    // });
+    // boxElem.addEventListener('mouseleave',()=>{
+    //   boxElem.style.backgroundColor = 'transparent';
+    // });
+    // document.addEventListener('mousemove',(e)=>{
+    //   console.log(e);
+    // });
+
+    //마우스로 box드래그
+    /**
+     * mousedown, mousemove, mouseup
+     */
     const boxElem = document.querySelector('.box');
-    boxElem.addEventListener('mouseenter',()=>{
-      boxElem.style.backgroundColor = 'skyblue';
+    let isDragging = false;
+    boxElem.addEventListener('mousedown',(e)=>{
+      console.log(e);
+      //마우스 오른쪽 버튼이 눌렸음
+      if( e.button ===2 )  return;
+      isDragging = true; //드래그 시작
+      boxElem.classList.add('move');
     });
-    boxElem.addEventListener('mouseleave',()=>{
-      boxElem.style.backgroundColor = 'transparent';
+    document.addEventListener('mousemove',(e)=> {
+    if ( e.button ===2)return;
+     if( !isDragging) return;
+    //  console.log ( e.clinetX, e.clientY);
+     boxElem.style.left = `${e.clientX}px`;
+     boxElem.style.top = `${e.clientY}px`;
+     boxElem.style.transform = 'translate(-50%,-50%) scale(0.5)';
+    });
+    document.addEventListener('mouseup',(e)=>{
+      if( e.button ===2 ) return;
+      isDragging = false;
+      boxElem.classList.remove('move');
+      //scale 원상복귀
+      boxElem.style.transform = 'translate(-50%,-50%) scale(1)';
+    });
+    //마우스 오른쪽 버튼 클릭
+    document.addEventListener('contextmenu',(e)=>{
+      //기본 메뉴 팝업 막기
+      e.preventDefault();
     });
   </script>
 </body>

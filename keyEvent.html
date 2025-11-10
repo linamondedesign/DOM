@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>keyEvent</title>
+  <style>
+    *{margin: 0; padding: 0;}
+    body {
+      height: 100vh;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: tomato;
+      position: absolute;
+      /* 50% : viewport의/2, clientWidth/2, clientHeight/2
+      */
+      /* top: 50%; 
+      left: 50%;
+      transform: translate(-50%,-50%); */
+      /* offsetWidth, offsetHeight : box-sizeing : border-Box*/
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    //.box인 요소
+    const boxElem = document.querySelector('.box');
+    /**
+     * offsetWidth, offsetHeight
+     */
+    // console.log( boxElem.offsetWidth);
+    // console.log( boxElem.offsetHeight);
+
+
+    //버튼을 누르면 STEP만큼 이동
+    const STEP = 10;
+    let moveX =(document.documentElement.clientWidth*0.5)-(boxElem.offsetWidth*0.5);
+    let moveY =(document.documentElement.clientHeight*0.5)-(boxElem.offsetHeight*0.5);
+    boxElem.style.left = `${moveX}px`;
+    boxElem.style.top = `${moveY}px`;
+    // let moveX = boxElem.style.left;
+    // let moveY = boxElem.style.top;
+    // console.log(moveX, moveY);
+    /*
+     *keypress, keydown, keyup
+     */
+    document.addEventListener('keydown',(e)=>{
+      switch(e.key){
+        case 'ArrowUp' : moveY -= STEP;
+          break;
+        case 'ArrowDown' : moveY += STEP;
+          break;
+        case 'ArrowLeft' : moveX -= STEP;
+          break;
+        case 'ArrowRight' : moveX += STEP;
+          break;
+      }
+      boxElem.style.left = `${moveX}px`;
+      boxElem.style.top = `${moveY}px`;
+      // console.log(e.key);
+    });
+  </script>
+</body>
+</html>aa
