@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>디지털 시계</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 100vh;
+        background-color: #222;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      div {
+        background-color: #fff;
+        font-size: 10rem;
+        padding: 1rem 3rem;
+        border-radius: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div>00:00:00</div>
+    <script>
+      const divElem = document.querySelector("div");
+      //현재 시/분/초 읽어와야 함
+      const updateTime = () => {
+        //date객체를 만들기
+        const current = new Date();
+        const hh = current.getHours();
+        const hours = String(hh).padStart(2, "0");
+        const mm = current.getMinutes();
+        const minites = String(mm).padStart(2, "0");
+        const ss = current.getSeconds();
+        const seconds = String(ss).padStart(2, "0");
+        divElem.textContent = `${hours}:${minites}:${seconds}`;
+      };
+      setInterval(updateTime, 1000);
+      updateTime();
+    </script>
+  </body>
+</html>

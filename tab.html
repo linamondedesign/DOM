@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탭 레이아웃</title>
+  <style>
+    *{margin: 0; padding: 0;}
+    ul {list-style: none;}
+    main {
+      width: 70%;
+      margin: 1rem auto;
+    }
+    .tab-menu {
+      display: flex;
+      li {
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        border: 1px solid #222;
+        border-right: none;
+        &:last-child{
+          border-right: 1px solid #222;
+        }
+      }
+      li.active {
+        background-color: tomato;
+        color: #fff;
+      }
+    }
+    .tab-item {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      li {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      li.show {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <ul class="tab-menu">
+      <li class="active">메뉴-1</li>
+      <li>메뉴-2</li>
+      <li>메뉴-3</li>
+    </ul>
+    <ul class="tab-item">
+       <li class="show"><img src="./images/img-01.png" alt="이미지1"></li>
+       <li><img src="./images/img-02.png" alt="이미지2"></li>
+       <li><img src="./images/img-03.png" alt="이미지3"></li>
+    </ul>
+  </main>
+  <script>
+    //tab=menu의 요소를 가져와야 합니다.
+    const tabMenu = document.querySelectorAll('.tab-menu>li');
+    const tabItem = document.querySelectorAll('.tab-item>li');
+    tabMenu.forEach((menu,idx)=>{
+      menu.addEventListener('click',()=>{
+        const prev = document.querySelector('.active');
+        prev.classList.remove('active');
+      //각각의 요소에 active라는 클래스를 추가
+      menu.classList.add('active');
+      //tab-item이 메뉴 idx값에 맞게 show클래스를 추가
+      const item = document.querySelector('.show');
+      item.classList.remove('show');
+      tabItem[idx].classList.add('show');
+      });
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트 흐름</title>
+  <style>
+    #outer {
+      background-color: tomato;
+      padding: 1rem;
+      #middle {
+        background-color: gray;
+        pad: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div id="middle">
+      <button id="inner">클릭</button>
+    </div>
+  </div>
+  <script>
+    /***
+     * 이벤트 : 버블링, 캡처링
+     * 버블링 : 하위에서 상위로 올라가는 버블링 흐름
+     * 3번째 인자 :
+     *  - capture (상위-> 하위)
+     *  - once (한번만 실행되고, 자동으로 제거)
+     *  -  passive(스크롤, prevenDefault()를 사용못하게 할 때)
+     * /
+
+    const $outer = document.querySelector('#outer');
+    const $middle = document.querySelector('#middle');
+    const $inner = document.querySelector('#inner');
+
+    $outer.addEventListener('click', ()=>{
+      alert('outer click');
+    });
+    $middle.addEventListener('click',()=> {
+      alert('middle click');
+    });
+    $inner.addEventListener('click',()=> {
+      alert('inner click');
+    });
+   
+  //  $outer.addEventListener('click', ()=> {
+  //   alert('outer click');
+  //  }, {capture:true});
+  //  $middle.addEventListener('click', ()=> {
+  //   alert('middle click');
+  //  }, {capture:true});
+  //  $inner.addEventListener('click', ()=> {
+  //   alert('inner click');
+  //  }, {capture:true});
+  //once
+  $inner.addEventListener('click',()=> {
+    alert('inner click');}
+  </script>
+</body>
+</html>

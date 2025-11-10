@@ -1,0 +1,43 @@
+@charset 'utf-8';
+
+*{margin: 0; padding: 0;}
+ul{list-style: none;}
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+main {
+  width: 300px;
+  height: 430px;
+  position: relative;
+  overflow: hidden;
+}
+
+ul.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1500px;
+  display: flex;
+  transition: .5s;
+  li{
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.btn-wrap {
+  text-align: center;
+  button {
+    font-size: 2rem;
+    padding: 10px;
+    /* pointer-events: none; */
+  }
+}

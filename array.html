@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>map을 활용한 요소 생성</title>
+  <style>
+    *{margin: 0; padding: 0;}
+    ul { display: flex; justify-content: center;}
+    ul > li {
+      width: 300px;
+      aspect-ratio: 1/2;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+  <ul></ul>
+  <script>
+    // const $ul = document.querySelector('ul');
+    // const menuList = ['HOME', 'ABOUT', 'CONTACT'];
+    // menuList.map((value)=>{
+    //   const elem = document.createElement('li');
+    //   elem.textContent = value;
+    //   $ul.append(elem);
+    // }); 
+
+    //외부에서 데이터를 받아오는 json 형식
+    const products = [
+      {id:1, title:'mouse',price:25000,img:'./images/img-01.png'},
+      {id:2, title:'keyboard',price:45000,img:'./images/img-02.png'},
+      {id:3, title:'monitor',price:120000,img:'./images/img-03.png'},
+      {id:4, title:'monitor',price:120000,img:'./images/img-04.png'},
+      {id:5, title:'monitor',price:120000,img:'./images/img-05.png'}
+    ];
+    const $ul = document.querySelector('ul');
+    products.forEach((value)=>{
+      const liElem = document.createElement('li');
+      liElem.style.backgroundImage = `url(${value.img})`;
+      $ul.append(liElem);
+      // const divElem = document.createElement('div');
+    });
+  </script>
+</body>
+</html>

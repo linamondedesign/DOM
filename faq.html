@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ</title>
+  <style>
+    * {margin: 0; padding: 0;}
+    ul {list-style: none;}
+    ul > li {
+      margin: 0.5rem 0;
+      .question{
+        font-size: 1.3rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .answer{
+      background-color: #ddd;
+      height: 0;
+      opacity: 0;
+      transition: 0.3s;
+      line-height: 2rem;
+
+      }
+      .answer.show{
+        height: 2rem;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+ <script src="./faq.js" defer></script>
+<body>
+  <h1>FAQ</h1>
+</body>
+</html>

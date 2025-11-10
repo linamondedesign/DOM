@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기본동작차단</title>
+</head>
+<body>
+  <a href="https://wwww.naver.conm" id="link">네이버</a>
+  <form>
+    <label>
+    <span>검색어 입력 : </span>
+    <input type="text">
+    </label>
+    <input type="submit">
+  </form>
+  <ul>
+    <li>메뉴-1</li>
+    <li>메뉴-2</li>
+    <li>메뉴-3</li>
+  </ul>
+  <script>
+    //a태그의 요소를 먼저 가져와야
+    const $link = document.querySelector('#link');
+    $link.addEventListener('click',(event)=> {
+      event.preventDefault();
+      alert('팝업창을 띄움니다');
+    });
+    //폼에서 일어나는 submit 이벤트를 중단
+    const $form = document.querySelector('form');
+    console.log($form);
+    $form.addEventListener('submit',(event)=>{
+      event.preventDefault(); //기능을 막아버림
+      const elem = $form.querySelector('input');
+      alert ( elem.value);
+    });
+    //ul의 객체 가져오기
+    const $ul = document.querySelector('ul');
+    $ul.addEventListener('click',(event)=> {
+      // console.log( event.currentTarget ); //addevent ~ 등록된 곳 
+      console.dir( event.target ); //this
+      //tagname이 LI와 같으면 alert창을 띄어라
+      // if ( event.target.tagName === 'LI'){
+      // alert( event.target.textContent ); 
+      // }
+      //가장 가까운 li, 클릭한 객체를 찾을 때. dom/array
+      //치트시트(cheat sheet) ----> 컨닝페이퍼 같은 정리된, 구글이나 , 핀터레스트에도 많음
+      //구글에다가 html cheat sheet 검색해서 보면 소스 정리 다 되어 있음 -> 내꺼 만들어 놓으면 좋음
+      //css도 있음,js도 있음
+
+      const elem = event.target.closest('li');
+      if ( elem ) {
+         alert( event.target.textContent ); 
+      }
+    });
+  </script>
+</body>
+</html>

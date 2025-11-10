@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dataset 사용하기</title>
+    <style>
+        *{ margin: 0; padding: 0;}
+        ul{ list-style: none;}
+        ul{
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            li{
+                width: 200px;
+                aspect-ratio: 2/3;
+                position: relative;
+                border-radius: 1rem;
+                overflow: hidden;
+                div{
+                    position: absolute;
+                    left: 0;
+                    width: 100%;
+                }
+                div.bg{                    
+                    top: 0;     
+                    height: 100%;
+                    background-size: cover;
+                    background-position: center;
+                }
+                div.txt{
+                    bottom: 0;
+                    padding: 1rem;
+                    background-color: rgba(255,255,255,0.8);
+                }
+            }
+            li:nth-child(1) > .bg{
+                background-image: url(./images/img-01.png);
+            }
+            li:nth-child(2) > .bg{
+                background-image: url(./images/img-02.png);
+            }
+            li:nth-child(3) > .bg{
+                background-image: url(./images/img-03.png);
+            }
+        }
+        /* 설정 on/off 처리 */
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <div class="bg"></div>
+            <div class="txt">
+                <p>1번 이미지 설명</p>
+                <button data-counter="0">
+                    <span class="counter">0</span>
+                    좋아요
+                </button>
+            </div>
+        </li>
+        <li>
+            <div class="bg"></div>
+            <div class="txt">
+                <p>2번 이미지 설명</p>
+                <button data-counter="0">
+                    <span class="counter">0</span>
+                    좋아요
+                </button>
+            </div>
+        </li>
+        <li>
+            <div class="bg"></div>
+            <div class="txt">
+                <p>3번 이미지 설명</p>
+                <button data-counter="0">
+                    <span class="counter">0</span>
+                    좋아요
+                </button>
+            </div>
+        </li>
+    </ul>
+    <div class="detail">
+        <button data-status="on">설정 닫기</button>
+        <div class="txt">
+            <p>설정 내용을 확인합니다</p>
+            <p>내용 확인 후 보기 닫기를 합니다</p>
+        </div>
+    </div>
+    <script>
+        //1번째 li태그의 버튼의 객체를 알아오기
+        // const btnElem = document.querySelector('ul>li:nth-child(1) button');
+        // console.dir(btnElem);
+        /*
+         * 버튼을 클릭하면 
+         * dataset 정보를 읽어와서 
+         * span 태그에 있는 숫자를 증가
+        */
+        // btnElem.onclick = ()=>{
+        //     let count = Number(btnElem.dataset.counter)+1;
+        //     btnElem.dataset.counter = count;
+        //     //span 정보 읽어오기
+        //     // const spanElem = btnElem.children[0];
+        //     const spanElem = btnElem.childNodes[1];
+        //     spanElem.textContent = count;
+        // }
+
+        /*
+        * 3개의 리스트 다 읽어온 다음에 각각의 리스트에서
+        * 버튼을 클릭하면 좋아요 숫자값이 각각 변경 
+        */
+        const liElem = document.querySelectorAll("ul>li button");
+        for( let i=0 ; i<liElem.length ; i++ ){
+            liElem[i].onclick = ()=>{
+                let count = Number(liElem[i].dataset.counter);
+                count++;
+                liElem[i].dataset.counter = count;    
+                liElem[i].children[0].textContent = count;            
+            }
+        }
+
+        /**
+         * 설정 내용 보기 on/off 처리
+         */
+        //설정 보기 버튼의 요소를 가져오기
+        const detailBtn = document.querySelector(".detail>button");
+        const detailTxt = document.querySelector(".detail>.txt");
+        detailBtn.onclick = ()=>{
+            let status = detailBtn.dataset.status;
+            if( status === 'on'){
+                detailBtn.dataset.status = 'off';
+                detailTxt.classList.add('hide');
+                detailBtn.textContent = '설정 보기';
+            } else {
+                detailBtn.dataset.status = 'on';
+                detailTxt.classList.remove('hide');
+                detailBtn.textContent = '설정 닫기';
+            }
+        }
+
+    </script>
+</body>
+</html>
